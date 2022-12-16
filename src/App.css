@@ -1,38 +1,53 @@
-.App {
-  text-align: center;
+#box1{
+  width: 100vw ;
+  height: 20vh;
+  border: 1px solid black;
+  background-color: rgb(98, 63, 63);
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* #search1{
+  width: 30vw;
+  height: 5vh;
+  margin-left: 60%;
+  margin-top: -60px;
+} */
+/* #search2{
+  width: 10vw;
+  height: 5vh;
+  border: 1px;
+  margin-left: 10%;
+  margin-top:-5%;
+  background-color: rgb(189, 48, 48);
+} */
+#box2{
+ 
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  background-color:rgb(60, 30, 30);
+  /* margin-top: 3vh; */
+  
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+h1{
+  color: white;
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+h2{
+  color: white;
+}
+h3{
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+img{
+  width: 20vw;
+  height: 35vh;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+#invoice{
+  width: 15vw;
+  height: 5vh;
+  margin-left: 50%;
+}
+table,td{
+  width: 30vw;
+  height: 30vh;
+  border: 1px solid black;
+  background-color: antiquewhite;
 }

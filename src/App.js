@@ -52,7 +52,7 @@ export default function App() {
 
 
                   <h3>{item.strCategory}</h3>
-                  <h3>{item.strMeal}</h3>
+                  
                   <span>
                     <button onClick={() => {
 
@@ -70,7 +70,7 @@ export default function App() {
 
                   <h2>${1000}</h2>
                   <h3>{item.strCategory}</h3>
-                  <h3>{item.strMeal}</h3>
+                  
                   <button onClick={() => {
                     let recipt = {
                       'dish': item.strMeal,

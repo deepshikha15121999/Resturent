@@ -1,6 +1,6 @@
 #box1{
   width: 100vw ;
-  height: 20vh;
+  height: 40vh;
   border: 1px solid black;
   background-color: rgb(98, 63, 63);
 }
@@ -69,8 +69,6 @@ img{
   background-color: rgb(175, 153, 153);
 }
 #strong1{
-  /* width: 0vw; */
-  /* size: 10%; */
   font-size: 170%;
 }
 table,th,td{

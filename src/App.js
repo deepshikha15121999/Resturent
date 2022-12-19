@@ -1,4 +1,4 @@
-// import { result } from 'lodash'
+
 import React from 'react'
 import { useEffect, useState } from "react"
 import './App.css'
@@ -29,12 +29,12 @@ export default function App() {
     }
 
     setFilteredData(new_array)
-    setsearchData('')
-    console.log(filteredData);
+    
   }
   return (
     <div id='box1'>
-      <center><h1>WELCOME TO THE MEAL</h1></center>
+      <center><h1>WELCOME TO THE MEAL</h1>
+      <h3>YOUR CAN SEARCH:-Side Seafood Vegetarian Miscellaneous Pork Dessert Beef Lamb Chicken</h3></center>
       <input id='input_sea' placeholder="search the text" value={searchData} onChange={(s) => {
         setsearchData(s.target.value)
       }} />
@@ -93,7 +93,6 @@ export default function App() {
             })
         }
       </div>
-
       {
         bill ? " " : (() => {
           return (

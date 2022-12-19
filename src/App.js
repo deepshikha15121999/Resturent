@@ -1,102 +1,133 @@
+// import { result } from 'lodash'
 import React from 'react'
 import { useEffect, useState } from "react"
 import './App.css'
 
-const load = require('lodash')
-
-
 export default function App() {
-
   const [searchData, setsearchData] = useState("")
   const [filteredData, setFilteredData] = useState([])
   const [list, setlist] = useState([])
-
   const [data, setdata] = useState([])
-  const dic = {}
-  { console.log(list) }
+  const [total, settotal] = useState(0)
+  const [bill, setbill] = useState(true)
 
   const getData = async () => {
     const response = await fetch('https://themealdb.com/api/json/v1/1/search.php?s')
     const result = await response.json()
     setdata(result.meals)
-    console.log(result)
   }
   useEffect(() => {
     getData()
   }, [])
 
-  const search = () => {
-    if (searchData.length > 3) {
-      let filter_item = load.filter(data, { 'strCategory': searchData })
-      setFilteredData(filter_item)
+  let search1 = () => {
+    let new_array = []
+    for (let i of data) {
+      if (i['strCategory'] === searchData) {
+        new_array.push(i)
+      }
     }
+
+    setFilteredData(new_array)
+    setsearchData('')
+    console.log(filteredData);
   }
-
   return (
-
     <div id='box1'>
       <center><h1>WELCOME TO THE MEAL</h1></center>
-      <input type='search' id='search1' placeholder="search" onChange={(s) => {
+      <input id='input_sea' placeholder="search the text" value={searchData} onChange={(s) => {
         setsearchData(s.target.value)
-        search()
       }} />
+      <button id='sea' onClick={() => {
+        search1()
+      }}>search</button>
+      <button id='invoice' onClick={() => {
+        setbill(false)
+      }}>INVOICE</button>
       <div id='box2'>
         {
           searchData.length > 3 ?
-
             filteredData.map((item, index) => {
               return (
-                <div id='' key={index}>
-
-                  <img src={item.strMealThumb}></img>
-
-
-                  <h3>{item.strCategory}</h3>
-                  <h3>{item.strMeal}</h3>
-                  <span>
-                    <button onClick={() => {
-
-                    }}>Add</button>
-                    <h2>${1000}</h2>
-                  </span>
-                </div>
-              )
-            }) :
-            data.map((item, index) => {
-              return (
                 <div key={index}>
-
                   <img src={item.strMealThumb}></img>
-
-                  <h2>${1000}</h2>
-                  <h3>{item.strCategory}</h3>
+                  <h1>{item.strCategory}</h1>
                   <h3>{item.strMeal}</h3>
-                  <button onClick={() => {
+                  <h4>${1000}</h4>
+
+                  <button id='add' onClick={() => {
                     let recipt = {
                       'dish': item.strMeal,
+                      'category': item.strCategory,
                       'price': 1000
                     }
                     setlist([...list, recipt])
+                    settotal(total + 1000)
                   }}>Add</button>
+                </div>
+              )
+            })
+            :
+            data.map((item, index) => {
+              return (
+                <div key={index}>
+                  <img src={item.strMealThumb}></img>
+
+                  <h1>{item.strCategory}</h1>
+                  <h3>{item.strMeal}</h3>
+                  <div id='span'>
+                    <button id='rupees'>${1000}</button>
+                    <button id='add' onClick={() => {
+                      let recipt = {
+                        'dish': item.strMeal,
+                        'category': item.strCategory,
+                        'price': 1000
+                      }
+                      setlist([...list, recipt])
+                      settotal(total + 1000)
+                    }}>Add</button>
+                  </div>
 
                 </div>
               )
             })
         }
       </div>
-      <button id='invoice' onClick={() => {
-      }}>INVOICE</button>
+
       {
-        list.map((item)=>{
-          return(
-            <div>
-                <table>
-                  <td>name:{item.strMeal}</td>
-                  <td>price:1000</td>
-                </table>
+        bill ? " " : (() => {
+          return (
+            <div id='recipt'>
+              <center><p id='strong1'><strong>RECIPT</strong></p></center>
+              <hr></hr>
+              <center><p>ORDER RECIPT</p>
+                <p>17/12/2022</p>
+                <p>ADRESS:KATRAJ</p>
+                <hr></hr>
+              </center>
+              <table>
+                <tr>
+                <th>DESCRIPTION</th>
+                <th>PRICE</th>
+                </tr>
+                {
+                  list.map((item) => {
+                    return (
+                      <tr>
+                        <td>{item.dish}</td>
+                        <td>{item.price}</td></tr>
+                    )
+                  })
+                }
+                <tr>
+                  <td>TOTAL</td>
+                  <td>${total}</td>
+                </tr>
+              </table>
             </div>
           )
-        })
+        })()
+
       }
     </div>
   )
